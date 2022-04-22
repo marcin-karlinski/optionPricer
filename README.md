@@ -4,9 +4,11 @@ R package build in Rcpp for calculating the theoretical value of call options. C
 Calculates Black-Scholes-Merton formula based on multiple Monte Carlo simulations. The main advantage are quick calculations thanks to the use of C++. 
 Package can be installed with the command 
 
+```
 install.packages("optionPricer_0.1.0.tar.gz",
                  type = "source",
                  repos = NULL)
+```
                  
 downAndOut_europeanCallPrice() function takes the following arguments:
 
@@ -21,6 +23,7 @@ nReps - number of Monte Carlo simulations.\
 
 Example: 
 
+```
 set.seed(123)\
 optionPricer::downAndOut_europeanCallPrice(nInt = 126, \
                                            strike = 100, \
@@ -30,5 +33,6 @@ optionPricer::downAndOut_europeanCallPrice(nInt = 126, \
                                            expiry = 0.5, \
                                            barrier = 95, \
                                            nReps = 100000)\
+```
                                            
  Based on the example from https://github.com/pawelsakowski/AF-RCPP-2021-2022. 
