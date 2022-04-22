@@ -1,0 +1,108 @@
+---
+title: "European down-and-out call option price analysis in R"
+author: "Marcin Karliński"
+date: "29 01 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In this project I will prepare a tool that prices a European call option (more specifically a down-and-out call) based on multiple Monte Carlo simulations. Based on the simulated valuations of the aforementioned call option I will study the relationship between the time to expiry, volatility and price of the underlying instrument. 
+
+In order to perform a large number of Monte Carlo simulations more time-efficiently, I have created a function in C++ that can be imported into R with an Rcpp package. The optionPricer package can be installed with install.packages() command in the following way:
+
+```{r }
+#loading also the necessary libraries
+library(tidyverse)
+library(RColorBrewer)
+
+install.packages("C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer_0.1.0.tar.gz",
+                 type = "source",
+                 repos = NULL)
+```
+
+European call option give the buyer a right to buy an asset at a specified price (strike price) after a specific time period (time to maturity). Buyer profits if price of the underlying asset at the expiration date is higher than the strike price (plus the fee for which the option was bought). For the down-and-out option specifically, the call option is canceled if the asset price reaches pre-determined barrier and the buyer loses the premium. 
+
+## Analysis
+
+To calculate the intrinsic value of the European down-and-out call option, downAndOut_europeanCallPrice() function uses the following parameters:
+
+nInt- is the number of trading days to simulate until the maturity day,
+strike - strike price (price at which the asset can be bought),
+spot - current price of the underlying asset,
+vol - volatility of the underlying instrument,
+r - annualized risk-free rate,
+expiry - time to maturity,
+barrier - barrier level at which the call option is canceled,
+nReps - number of Monte Carlo simulations.
+
+Let's check if the constructed function works. I will check the intrinsic value of the European down-and-out call option that has time of maturity of 6 months, current price of 105 and strike price of 100. I will assume that there are 252 trading days in a year (thus 6 months have 126 trading days), volatility is equal to 0.22, annualized risk-free rate (r) is equal to 0.05 and barrier level is set to 95. I will use 100 000 Monte Carlo simulation to find out the fair price of the call option. 
+
+```{r}
+set.seed(123)
+optionPricer::downAndOut_europeanCallPrice(nInt = 126, 
+                                           strike = 100, 
+                                           spot = 105, 
+                                           vol = 0.22, 
+                                           r = 0.05, 
+                                           expiry = 0.5, 
+                                           barrier = 95, 
+                                           nReps = 100000)
+```
+Function returned a value of 9.46, which seems like a reasonable price for such a call option. 
+
+Now I will study the relationship between both volatility and time to expiry and the price of the European down-and-out call. In order to do that, I will run the function 100 times for volatility between 0.1 and 1 and time to expiry between around 1 month and a year (also 0.1 and 1). All the other parameters will be set at constant with the same values as in the previous function call. Number of trading days is assumed to be 252 times the time to maturity. There will also be fewer Monte Carlo simulations to speed up the calculations. 
+
+```{r}
+#I will build an R function with all parameters apart from expiry date set at constant
+getEuropeanCallPrice <- function(expiry = 0.5, vol = 0.22) {
+  return(optionPricer::downAndOut_europeanCallPrice(nInt = round(252*expiry),
+                                     strike = 100,
+                                     spot   = 105,
+                                     vol    = vol,
+                                     r      = 0.05,
+                                     expiry = expiry,
+                                     barrier = 95,
+                                     nReps = 10^4))
+}
+
+
+# arguments values of values of function
+volatility <- seq(0.1, 1, by = 0.01)
+expiry <- seq(0.1, 1, by = 0.01)
+
+prices_volatility <- sapply(volatility, getEuropeanCallPrice)
+prices_expiry <- sapply(expiry, getEuropeanCallPrice)
+```
+```{r}
+rbind(
+  data.frame(
+  parameters = expiry,
+  prices = prices_expiry,
+  group = "expiry"),
+  data.frame(
+    parameters = expiry,
+    prices = prices_volatility,
+    group = "volatility")
+  ) %>% 
+  ggplot() +
+  geom_point(aes(parameters, prices, colour = group)) +
+  labs(
+    x     = "time to maturity/volatility",
+    y     = "price of European call option",
+    title = "relationship between price of European call option and time  to maturity/volatility",
+    caption = "source: own calculations with the optionPricer package")  +
+  scale_colour_manual(values = brewer.pal(3, "Paired")) +
+  theme_minimal() + 
+  theme(legend.title = element_blank())
+```
+Unsurprisingly, low values of time to maturity and volatility result in much lower prices of the European down-and-out call option. For the value of volatility and time to maturity of 0.25 (expiry equal to 3 months) calculated intrinsic value of the underlying asset is equal to 8, while for volatility of 1 and time to maturity of 1 year the underlying value is equal to as much as 11.5. Based on the plot there is a clear positive non-linear relationship between the two parameters and value of the European down-and-out call option. Intuitively, it's no surprise as for a longer time to maturity there is a higher chance of the price of the underlying instrument to go above the strike price. Higher volatility also gives a higher chance of the price exceeding the strike price. 
+
+##Summary
+
+In this project I showed how to calculate the intrinsic value of the European down-and-out call option and analyzed the relationship between two parameters behind the value of the call. This study can be further expanded by performing a similar analysis for relationship between price and different parameters, as well as calculating the intrinsic value for different barrier types and different options (ie. puts or Asian options).
+

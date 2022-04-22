@@ -1,0 +1,100 @@
+[
+    {
+        "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/EuropeanOption.cpp",
+        "file_last_write": 1643482702.0,
+        "definitions": [
+            {
+                "usr": "c:@S@EuropeanOption@F@generatePath#",
+                "kind": 7,
+                "parent_name": "EuropeanOption",
+                "name": "generatePath",
+                "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/EuropeanOption.cpp",
+                "line": 30,
+                "column": 22
+            },
+            {
+                "usr": "c:@S@EuropeanOption@F@printPath#",
+                "kind": 7,
+                "parent_name": "EuropeanOption",
+                "name": "printPath",
+                "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/EuropeanOption.cpp",
+                "line": 42,
+                "column": 22
+            },
+            {
+                "usr": "c:@S@EuropeanOption@F@getDownAndOutCallPrice#I#",
+                "kind": 7,
+                "parent_name": "EuropeanOption",
+                "name": "getDownAndOutCallPrice(int)",
+                "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/EuropeanOption.cpp",
+                "line": 53,
+                "column": 24
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/EuropeanOption.h",
+        "file_last_write": 1641681957.0,
+        "definitions": [
+            {
+                "usr": "c:@S@EuropeanOption",
+                "kind": 2,
+                "parent_name": "",
+                "name": "EuropeanOption",
+                "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/EuropeanOption.h",
+                "line": 3,
+                "column": 7
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/getOneGaussianByBoxMueller.cpp",
+        "file_last_write": 1637746364.0,
+        "definitions": [
+            {
+                "usr": "c:@F@getOneGaussianByBoxMueller#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "getOneGaussianByBoxMueller",
+                "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/getOneGaussianByBoxMueller.cpp",
+                "line": 5,
+                "column": 8
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/getOneGaussianByBoxMueller.h",
+        "file_last_write": 1637746364.0,
+        "definitions": []
+    },
+    {
+        "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/main.cpp",
+        "file_last_write": 1644963071.0,
+        "definitions": [
+            {
+                "usr": "c:@F@downAndOut_europeanCallPrice#I#d#d#d#d#d#d#L#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "downAndOut_europeanCallPrice(int, double, double, double, double, double, double, long)",
+                "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/main.cpp",
+                "line": 15,
+                "column": 8
+            }
+        ]
+    },
+    {
+        "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/rcpp_hello.cpp",
+        "file_last_write": 1641683381.0,
+        "definitions": [
+            {
+                "usr": "c:@F@rcpp_hello#",
+                "kind": 6,
+                "parent_name": "",
+                "name": "rcpp_hello",
+                "file": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/rcpp_hello.cpp",
+                "line": 18,
+                "column": 6
+            }
+        ]
+    }
+]

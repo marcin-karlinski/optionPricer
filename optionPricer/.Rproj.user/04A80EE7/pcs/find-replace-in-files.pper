@@ -1,0 +1,14 @@
+{
+    "dialog-state": {
+        "query": "thisPath",
+        "path": "/src",
+        "regex": false,
+        "caseSensitive": false,
+        "filePatterns": [],
+        "excludeFilePatterns": [],
+        "resultsCount": 7,
+        "errorCount": 0,
+        "replaceErrors": "",
+        "projectRelative": true
+    }
+}

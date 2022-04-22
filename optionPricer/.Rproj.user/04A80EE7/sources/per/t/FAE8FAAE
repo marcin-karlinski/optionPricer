@@ -1,0 +1,26 @@
+{
+    "id": "FAE8FAAE",
+    "path": "C:/Users/marci/Desktop/UW/III Semester/applied_finance/optionPricer_package/optionPricer/src/EuropeanOption.cpp",
+    "project_path": "src/EuropeanOption.cpp",
+    "type": "cpp",
+    "hash": "1730863558",
+    "contents": "",
+    "dirty": false,
+    "created": 1643482653657.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "24,2",
+        "scrollLine": "20"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1643482702,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1643482702340,
+    "read_only": false,
+    "read_only_alternatives": []
+}

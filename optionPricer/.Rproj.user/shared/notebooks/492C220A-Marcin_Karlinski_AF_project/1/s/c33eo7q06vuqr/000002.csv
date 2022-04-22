@@ -1,0 +1,13 @@
+"0","optionPricer::downAndOut_europeanCallPrice(nInt = 126, 
+                                           strike = 100, 
+                                           spot = 105, 
+                                           vol = 0.22, 
+                                           r = 0.05, 
+                                           expiry = 0.5, 
+                                           barrier = 95, 
+                                           nReps = 100000)
+"
+"1","[1]"
+"1"," 9.434101"
+"1","
+"
